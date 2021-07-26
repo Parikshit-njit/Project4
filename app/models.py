@@ -1,4 +1,7 @@
-from . import db
+from flask_sqlalchemy import SQLAlchemy
+from app import app
+
+db = SQLAlchemy(app)
 
 
 class Addresses(db.Model):
@@ -9,12 +12,14 @@ class Addresses(db.Model):
         db.Integer,
         primary_key=True
     )
+
     fname = db.Column(
         db.String(64),
         index=False,
         unique=True,
         nullable=True
     )
+
     lname = db.Column(
         db.String(80),
         index=False,
