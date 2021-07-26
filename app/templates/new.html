@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+{% block content %}
+<form action="/address/new" method="POST">
+    <div class="row">
+        <div class="col">
+            <label for="Fname">First Name</label>
+            <input id="Fname" type="text" class="form-control" placeholder="First Name" name="Fname">
+        </div>
+        <div class="col">
+            <label for="Lname">Last Name</label>
+            <input id="Lname" t ype="text" class="form-control" placeholder="Last Name"
+                   name="Lname">
+        </div>
+        <div class="col">
+            <label for="Address">Address</label>
+            <input id="Address" type="text" class="form-control" placeholder="Address" name="Address">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <label for="City">City</label>
+            <input id="City" type="text" class="form-control" placeholder="City" name="City">
+        </div>
+        <div class="col">
+            <label for="State">State</label>
+            <input id="State" type="text" class="form-control" placeholder="State" name="State">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <label for="Zip_Code">Zip Code</label>
+
+            <input id="Zip_Code" type="text" class="form-control" placeholder="Zip_Code"
+                   name="Zip_Code">
+        </div>
+    </div>
+    <button type="submit" class="btn btn-success">Create</button>
+
+</form>
+
+{% endblock %}
