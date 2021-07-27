@@ -35,7 +35,9 @@ db = SQLAlchemy(app)
 
 class Addresses(db.Model):
     """Data model for user addresses."""
-
+    __table_args__ = (
+        db.UniqueConstraint('fname', 'lname', 'address', 'state', 'city', 'zip_code'),
+    )
     __tablename__ = 'addresses'
     id = db.Column(
         db.Integer,
@@ -91,20 +93,7 @@ class Addresses(db.Model):
 
 db.create_all()
 
-import csv
 
-for csv_row in open("../db/addresses.csv", "r"):
-    line = csv_row.strip().split(",")
-    print(line)
-    fname = line[0]
-    lname = line[1]
-    address = line[2]
-    city = line[3]
-    state = line[4]
-    zip_code = line[5]
-    newAddress = Addresses(fname=fname, lname=lname, address=address, city=city, state=state, zip_code=zip_code)
-    db.session.add(newAddress)
-    db.session.commit()
 
 class AddressForm(FlaskForm):
     fname = StringField("First Name")
@@ -114,6 +103,28 @@ class AddressForm(FlaskForm):
     state = StringField("State")
     zip_code = StringField("Zip Code")
     submit = SubmitField("Submit")
+
+@app.before_first_request
+def prefill_db():
+    db.session.query(Addresses).delete()
+    db.session.commit()
+    try:
+        for csv_row in open("../db/addresses.csv", "r"):
+            line = csv_row.strip().split(",")
+            print(line)
+            fname = line[0]
+            lname = line[1]
+            address = line[2]
+            city = line[3]
+            state = line[4]
+            zip_code = line[5]
+            newAddress = Addresses(fname=fname, lname=lname, address=address, city=city, state=state, zip_code=zip_code)
+            db.session.add(newAddress)
+            db.session.commit()
+    except:
+        print("HANG ON!!!")
+    finally:
+        print("In finally...")
 
 
 @app.route('/', methods=['GET'])
