@@ -1,3 +1,4 @@
+from contextlib import redirect_stderr
 from typing import List, Dict
 import mysql.connector
 import simplejson as json
@@ -10,6 +11,12 @@ from flask_sqlalchemy import SQLAlchemy
 # from models import Addresses
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField
+from sqlalchemy.orm import sessionmaker
+from sqlalchemy import create_engine
+engine = create_engine('sqlite:///addresses.db', echo=True)
+
+Session = sessionmaker(bind=engine)
+session = Session()
 
 app = Flask(__name__,
     instance_relative_config=False,
@@ -20,6 +27,8 @@ app = Flask(__name__,
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///addresses.db'
 app.config['SECRET_KEY'] = "Hello World!"
 db = SQLAlchemy(app)
+
+
 
 class Addresses(db.Model):
     """Data model for user addresses."""
@@ -96,58 +105,56 @@ def record_view(address_id):
     # print(db.session.query().filter_by(id=address_id).first())
     print(Addresses.query.get(address_id).fname)
     return render_template('view.html', title='View Form', city=Addresses.query.get(address_id))
+
+
+@app.route('/edit/<int:address_id>', methods=['GET'])
+def form_edit_get(address_id):
+    obj = Addresses.query.filter_by(id=address_id).one()
+    return render_template('edit.html', title='Edit Form', address=obj)
 #
 #
-# @app.route('/edit/<int:address_id>', methods=['GET'])
-# def form_edit_get(address_id):
-#     cursor = mysql.get_db().cursor()
-#     cursor.execute('SELECT * FROM addresses WHERE id=%s', address_id)
-#     result = cursor.fetchall()
-#     return render_template('edit.html', title='Edit Form', address=result[0])
-#
-#
-# @app.route('/edit/<int:address_id>', methods=['POST'])
-# def form_update_post(address_id):
-#     cursor = mysql.get_db().cursor()
-#     inputData = (request.form.get('Fname'), request.form.get('Lname'), request.form.get('Address'),
-#                  request.form.get('City'), request.form.get('State'),
-#                  request.form.get('Zip_Code'), address_id)
-#     sql_update_query = """UPDATE addresses t SET t.Fname = %s, t.Lname = %s, t.Address = %s, t.City =
-#     %s, t.State = %s, t.Zip_Code = %s WHERE t.id = %s """
-#     cursor.execute(sql_update_query, inputData)
-#     mysql.get_db().commit()
-#     return redirect("/", code=302)
-#
-#
-@app.route('/address/new', methods=['GET', 'POST'])
-def form_insert_get():
-    form = AddressForm()
-    addressNew = Addresses(fname=form.fname.data, lname=form.lname.data, address=form.address.data, city=form.city.data, state=form.state.data, zip_code=form.zip_code.data)
-    db.session.add(addressNew)
+
+
+@app.route('/edit/<int:address_id>', methods=['POST'])
+def form_update_post(address_id):
+    obj = Addresses.query.filter_by(id=address_id).one()
+    obj.fname = request.form.get('fname')
+    obj.lname = request.form.get('lname')
+    obj.address = request.form.get('address')
+    obj.city = request.form.get('city')
+    obj.state = request.form.get('state')
+    obj.zip_code = request.form.get('zip_code')
+    db.session.flush()
     db.session.commit()
-    fname = form.fname
-    form.fname.data = ''
-    form.lname.data = ''
-    form.address.data = ''
-    form.city.data = ''
-    form.state.data = ''
-    form.zip_code.data = ''
+    return redirect("/", code=302)
+#
+#
+
+
+@app.route('/address/new', methods=['POST'])
+def form_insert_get():
+        form = AddressForm()
+        addressNew = Addresses(fname=form.fname.data, lname=form.lname.data, address=form.address.data,
+                               city=form.city.data, state=form.state.data, zip_code=form.zip_code.data)
+        fname = form.fname
+        db.session.add(addressNew)
+        db.session.commit()
+        form.fname.data = ''
+        form.lname.data = ''
+        form.address.data = ''
+        form.city.data = ''
+        form.state.data = ''
+        form.zip_code.data = ''
+        all_addresses = Addresses.query.order_by(Addresses.id)
+        return render_template('new.html', title='New Address Form', form=form, fname=fname, all_addresses = all_addresses)
+
+
+@app.route('/address/new', methods=['GET'])
+def form_insert_post():
+    form = AddressForm()
     all_addresses = Addresses.query.order_by(Addresses.id)
-    return render_template('new.html', title='New Address Form', form=form, fname=fname, all_addresses = all_addresses)
-#
-#
-# @app.route('/address/new', methods=['POST'])
-# def form_insert_post():
-#     cursor = mysql.get_db().cursor()
-#     inputData = (request.form.get('Fname'), request.form.get('Lname'), request.form.get('Address'),
-#                  request.form.get('City'), request.form.get('State'),
-#                  request.form.get('Zip_Code'))
-#     sql_insert_query = """INSERT INTO addresses (Fname,Lname,Address,City,State,Zip_Code) VALUES (%s, %s,%s, %s,%s, %s) """
-#     cursor.execute(sql_insert_query, inputData)
-#     mysql.get_db().commit()
-#     return redirect("/", code=302)
-#
-#
+    return render_template('new.html', title='New Address Form', form=form, all_addresses=all_addresses)
+    return redirect("/", code=302)
 
 
 @app.route('/delete/<int:address_id>', methods=['POST'])
