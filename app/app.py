@@ -71,8 +71,17 @@ class Addresses(db.Model):
     def __repr__(self):
         return '<Addresses {}>'.format(self.id)
 
-
 db.create_all()
+
+
+class AddressForm(FlaskForm):
+    fname = StringField("First Name")
+    lname = StringField("Last Name")
+    address = StringField("Address")
+    city = StringField("City")
+    state = StringField("State")
+    zip_code = StringField("Zip Code")
+    submit = SubmitField("Submit")
 
 
 @app.route('/', methods=['GET'])
