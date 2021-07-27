@@ -1,3 +1,4 @@
 flask-sqlalchemy
 simplejson
 mysql-connector
+flask_wtf

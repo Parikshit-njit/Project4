@@ -1,42 +1,50 @@
 {% extends "layout.html" %}
 {% block content %}
-<form action="/address/new" method="POST">
+<form method="POST">
     <div class="row">
         <div class="col">
-            <label for="Fname">First Name</label>
-            <input id="Fname" type="text" class="form-control" placeholder="First Name" name="Fname">
+            {{ form.fname.label }}
+            {{ form.fname(class = "form-control") }}
         </div>
         <div class="col">
-            <label for="Lname">Last Name</label>
-            <input id="Lname" t ype="text" class="form-control" placeholder="Last Name"
-                   name="Lname">
+            {{ form.lname.label }}
+            {{ form.lname(class = "form-control") }}
         </div>
         <div class="col">
-            <label for="Address">Address</label>
-            <input id="Address" type="text" class="form-control" placeholder="Address" name="Address">
+            {{ form.address.label }}
+            {{ form.address(class = "form-control") }}
         </div>
     </div>
 
     <div class="row">
         <div class="col">
-            <label for="City">City</label>
-            <input id="City" type="text" class="form-control" placeholder="City" name="City">
+           {{ form.city.label }}
+            {{ form.city(class = "form-control") }}
         </div>
         <div class="col">
-            <label for="State">State</label>
-            <input id="State" type="text" class="form-control" placeholder="State" name="State">
+            {{ form.state.label }}
+            {{ form.state(class = "form-control") }}
         </div>
     </div>
     <div class="row">
         <div class="col">
-            <label for="Zip_Code">Zip Code</label>
-
-            <input id="Zip_Code" type="text" class="form-control" placeholder="Zip_Code"
-                   name="Zip_Code">
+            {{ form.zip_code.label }}
+            {{ form.zip_code(class = "form-control") }}
         </div>
     </div>
-    <button type="submit" class="btn btn-success">Create</button>
+
+            {{ form.submit.label }}
+            {{ form.submit(class = "form-control") }}
 
 </form>
-
+<br>
+    {% for temp in all_addresses %}
+        {{ temp.id }}
+        {{ temp.fname }}
+        {{ temp.lname }}
+        {{ temp.address }}
+        {{ temp.city }}
+        {{ temp.state }}
+        {{ temp.zip_code }}<br>
+    {% endfor %}
 {% endblock %}
