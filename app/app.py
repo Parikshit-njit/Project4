@@ -181,57 +181,50 @@ def api_browse() -> str:
     for temp in resp:
         json_arr.append(temp.toDict())
     return jsonify(json_arr)
-#
-#
-# @app.route('/api/v1/addresses/<int:address_id>', methods=['GET'])
-# def api_retrieve(address_id) -> str:
-#     cursor = mysql.get_db().cursor()
-#     cursor.execute('SELECT * FROM addresses WHERE id=%s', address_id)
-#     result = cursor.fetchall()
-#     json_result = json.dumps(result);
-#     resp = Response(json_result, status=200, mimetype='application/json')
-#     return resp
-#
-#
-# @app.route('/api/v1/addresses/<int:address_id>', methods=['PUT'])
-# def api_edit(address_id) -> str:
-#     cursor = mysql.get_db().cursor()
-#     content = request.json
-#     inputData = (content['Fname'], content['Lname'], content['Address'],
-#                  content['City'], content['State'],
-#                  content['Zip_Code'], address_id)
-#     sql_update_query = """UPDATE addresses t SET t.Fname = %s, t.Lname = %s, t.Address = %s, t.City =
-#         %s, t.State = %s, t.Zip_Code = %s WHERE t.id = %s """
-#     cursor.execute(sql_update_query, inputData)
-#     mysql.get_db().commit()
-#     resp = Response(status=200, mimetype='application/json')
-#     return resp
-#
-#
-# @app.route('/api/v1/addresses', methods=['POST'])
-# def api_add() -> str:
-#
-#     content = request.json
-#
-#     cursor = mysql.get_db().cursor()
-#     inputData = (content['Fname'], content['Lname'], content['Address'],
-#                  content['City'], content['State'],
-#                  content['Zip_Code'])
-#     sql_insert_query = """INSERT INTO addresses (Fname,Lname,Address,City,State,Zip_Code) VALUES (%s, %s,%s, %s,%s, %s) """
-#     cursor.execute(sql_insert_query, inputData)
-#     mysql.get_db().commit()
-#     resp = Response(status=201, mimetype='application/json')
-#     return resp
-#
-#
-# @app.route('/api/v1/addresses/<int:address_id>', methods=['DELETE'])
-# def api_delete(address_id) -> str:
-#     cursor = mysql.get_db().cursor()
-#     sql_delete_query = """DELETE FROM addresses WHERE id = %s """
-#     cursor.execute(sql_delete_query, address_id)
-#     mysql.get_db().commit()
-#     resp = Response(status=200, mimetype='application/json')
-#     return resp
+
+
+@app.route('/api/v1/addresses/<int:address_id>', methods=['GET'])
+def api_retrieve(address_id) -> str:
+    resp = Addresses.query.filter_by(id=address_id).one()
+    return jsonify(resp.toDict())
+
+
+@app.route('/api/v1/addresses/<int:address_id>', methods=['PUT'])
+def api_edit(address_id) -> str:
+    content = request.json
+    obj = Addresses.query.filter_by(id=address_id).one()
+    obj.fname = content['fname']
+    obj.lname = content['lname']
+    obj.address = content['address']
+    obj.city = content['city']
+    obj.state = content['state']
+    obj.zip_code = content['zip_code']
+    db.session.commit()
+    resp = Response(status=200, mimetype='application/json')
+    return resp
+
+
+@app.route('/api/v1/addresses', methods=['POST'])
+def api_add() -> str:
+
+    content = request.json
+
+    newAddress = Addresses(fname = content['fname'], lname = content['lname'], address = content['address'],
+                 city = content['city'], state = content['state'],
+                 zip_code = content['zip_code'])
+    db.session.add(newAddress)
+    db.session.commit()
+    resp = Response(status=201, mimetype='application/json')
+    return resp
+
+
+@app.route('/api/v1/addresses/<int:address_id>', methods=['DELETE'])
+def api_delete(address_id) -> str:
+    obj = Addresses.query.filter_by(id=address_id).one()
+    db.session.delete(obj)
+    db.session.commit();
+    resp = Response(status=200, mimetype='application/json')
+    return resp
 
 
 if __name__ == '__main__':
