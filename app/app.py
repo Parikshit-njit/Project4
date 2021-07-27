@@ -91,12 +91,11 @@ def index():
     return render_template('index.html', title='Home', user=user, all_addresses = all_addresses)
 
 
-# @app.route('/view/<int:address_id>', methods=['GET'])
-# def record_view(address_id):
-#     cursor = mysql.get_db().cursor()
-#     cursor.execute('SELECT * FROM addresses WHERE id=%s', address_id)
-#     result = cursor.fetchall()
-#     return render_template('view.html', title='View Form', city=result[0])
+@app.route('/view/<int:address_id>', methods=['GET'])
+def record_view(address_id):
+    # print(db.session.query().filter_by(id=address_id).first())
+    print(Addresses.query.get(address_id).fname)
+    return render_template('view.html', title='View Form', city=Addresses.query.get(address_id))
 #
 #
 # @app.route('/edit/<int:address_id>', methods=['GET'])
@@ -149,13 +148,14 @@ def form_insert_get():
 #     return redirect("/", code=302)
 #
 #
-# @app.route('/delete/<int:address_id>', methods=['POST'])
-# def form_delete_post(address_id):
-#     cursor = mysql.get_db().cursor()
-#     sql_delete_query = """DELETE FROM addresses WHERE id = %s """
-#     cursor.execute(sql_delete_query, address_id)
-#     mysql.get_db().commit()
-#     return redirect("/", code=302)
+
+
+@app.route('/delete/<int:address_id>', methods=['POST'])
+def form_delete_post(address_id):
+    obj = Addresses.query.filter_by(id=address_id).one()
+    db.session.delete(obj)
+    db.session.commit();
+    return redirect("/", code=302)
 #
 #
 # @app.route('/api/v1/addresses', methods=['GET'])
