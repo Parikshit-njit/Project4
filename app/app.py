@@ -7,7 +7,9 @@ from flask import render_template
 from flaskext.mysql import MySQL
 from pymysql.cursors import DictCursor
 from flask_sqlalchemy import SQLAlchemy
-from models import Addresses
+# from models import Addresses
+from flask_wtf import FlaskForm
+from wtforms import StringField, SubmitField
 
 app = Flask(__name__,
     instance_relative_config=False,
@@ -15,14 +17,69 @@ app = Flask(__name__,
     static_folder="static"
             )
 
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///addresses.db'
+app.config['SECRET_KEY'] = "Hello World!"
+db = SQLAlchemy(app)
+
+class Addresses(db.Model):
+    """Data model for user addresses."""
+
+    __tablename__ = 'addresses'
+    id = db.Column(
+        db.Integer,
+        primary_key=True
+    )
+
+    fname = db.Column(
+        db.String(64),
+        index=False,
+        unique=True,
+        nullable=True
+    )
+
+    lname = db.Column(
+        db.String(80),
+        index=False,
+        unique=True,
+        nullable=True
+    )
+    address = db.Column(
+        db.String(80),
+        index=False,
+        unique=True,
+        nullable=True
+    )
+    city = db.Column(
+        db.String(80),
+        index=False,
+        unique=True,
+        nullable=True
+    )
+    state = db.Column(
+        db.String(80),
+        index=False,
+        unique=True,
+        nullable=True
+    )
+    zip_code = db.Column(
+        db.String(80),
+        index=False,
+        unique=True,
+        nullable=True
+    )
+
+    def __repr__(self):
+        return '<Addresses {}>'.format(self.id)
+
+
+db.create_all()
+
 
 @app.route('/', methods=['GET'])
 def index():
     user = {'username': 'Address Project'}
-    # cursor = mysql.get_db().cursor()
-    # cursor.execute('SELECT * FROM addresses')
-    # result = cursor.fetchall()
-    return render_template('index.html', title='Home', user=user, addresses=Addresses.)
+    all_addresses = Addresses.query.order_by(Addresses.id)
+    return render_template('index.html', title='Home', user=user, all_addresses = all_addresses)
 
 
 # @app.route('/view/<int:address_id>', methods=['GET'])
@@ -54,9 +111,10 @@ def index():
 #     return redirect("/", code=302)
 #
 #
-# @app.route('/address/new', methods=['GET'])
-# def form_insert_get():
-#     return render_template('new.html', title='New Address Form')
+@app.route('/address/new', methods=['GET', 'POST'])
+def form_insert_get():
+
+    return render_template('new.html', title='New Address Form', form=form, fname=fname, all_addresses = all_addresses)
 #
 #
 # @app.route('/address/new', methods=['POST'])
