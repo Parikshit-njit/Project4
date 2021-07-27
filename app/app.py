@@ -122,7 +122,18 @@ def index():
 #
 @app.route('/address/new', methods=['GET', 'POST'])
 def form_insert_get():
-
+    form = AddressForm()
+    addressNew = Addresses(fname=form.fname.data, lname=form.lname.data, address=form.address.data, city=form.city.data, state=form.state.data, zip_code=form.zip_code.data)
+    db.session.add(addressNew)
+    db.session.commit()
+    fname = form.fname
+    form.fname.data = ''
+    form.lname.data = ''
+    form.address.data = ''
+    form.city.data = ''
+    form.state.data = ''
+    form.zip_code.data = ''
+    all_addresses = Addresses.query.order_by(Addresses.id)
     return render_template('new.html', title='New Address Form', form=form, fname=fname, all_addresses = all_addresses)
 #
 #
