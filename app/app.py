@@ -45,38 +45,38 @@ class Addresses(db.Model):
     fname = db.Column(
         db.String(64),
         index=False,
-        unique=True,
+        unique=False,
         nullable=True
     )
 
     lname = db.Column(
         db.String(80),
         index=False,
-        unique=True,
+        unique=False,
         nullable=True
     )
     address = db.Column(
         db.String(80),
         index=False,
-        unique=True,
+        unique=False,
         nullable=True
     )
     city = db.Column(
         db.String(80),
         index=False,
-        unique=True,
+        unique=False,
         nullable=True
     )
     state = db.Column(
         db.String(80),
         index=False,
-        unique=True,
+        unique=False,
         nullable=True
     )
     zip_code = db.Column(
         db.String(80),
         index=False,
-        unique=True,
+        unique=False,
         nullable=True
     )
 
@@ -91,6 +91,20 @@ class Addresses(db.Model):
 
 db.create_all()
 
+import csv
+
+for csv_row in open("../db/addresses.csv", "r"):
+    line = csv_row.strip().split(",")
+    print(line)
+    fname = line[0]
+    lname = line[1]
+    address = line[2]
+    city = line[3]
+    state = line[4]
+    zip_code = line[5]
+    newAddress = Addresses(fname=fname, lname=lname, address=address, city=city, state=state, zip_code=zip_code)
+    db.session.add(newAddress)
+    db.session.commit()
 
 class AddressForm(FlaskForm):
     fname = StringField("First Name")
