@@ -2,7 +2,7 @@ from contextlib import redirect_stderr
 from typing import List, Dict
 import mysql.connector
 import simplejson as json
-from flask import Flask, Response
+from flask import Flask, Response, jsonify
 from flask import request, redirect
 from flask import render_template
 from flaskext.mysql import MySQL
@@ -13,6 +13,9 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy import create_engine
+from collections import OrderedDict
+from sqlalchemy.ext.serializer import loads, dumps
+
 engine = create_engine('sqlite:///addresses.db', echo=True)
 
 Session = sessionmaker(bind=engine)
@@ -76,6 +79,12 @@ class Addresses(db.Model):
         unique=True,
         nullable=True
     )
+
+    def toDict(self):
+        result = OrderedDict()
+        for key in self.__mapper__.c.keys():
+            result[key] = str(getattr(self, key))
+        return result
 
     def __repr__(self):
         return '<Addresses {}>'.format(self.id)
@@ -163,16 +172,15 @@ def form_delete_post(address_id):
     db.session.delete(obj)
     db.session.commit();
     return redirect("/", code=302)
-#
-#
-# @app.route('/api/v1/addresses', methods=['GET'])
-# def api_browse() -> str:
-#     cursor = mysql.get_db().cursor()
-#     cursor.execute('SELECT * FROM addresses')
-#     result = cursor.fetchall()
-#     json_result = json.dumps(result);
-#     resp = Response(json_result, status=200, mimetype='application/json')
-#     return resp
+
+
+@app.route('/api/v1/addresses', methods=['GET'])
+def api_browse() -> str:
+    resp = Addresses.query.all()
+    json_arr = []
+    for temp in resp:
+        json_arr.append(temp.toDict())
+    return jsonify(json_arr)
 #
 #
 # @app.route('/api/v1/addresses/<int:address_id>', methods=['GET'])
