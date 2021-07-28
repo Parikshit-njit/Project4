@@ -1,6 +1,13 @@
 version: "3"
 
 services:
+  app:
+    build: ./app
+    ports:
+      - "5000:5000"
+    volumes:
+      - ../:/app
+      - ./db/:/my/sqlite/path/ # Here is the change
   sqlite3:
     image: nouchka/sqlite3:latest
     stdin_open: true
@@ -9,11 +16,5 @@ services:
       - ./db/:/root/db/
   redis:
     image: "redis:alpine"
-  app:
-    build: ./app
-    ports:
-      - "5000:5000"
-    volumes:
-      - ../:/app
-      - ./db/:/my/sqlite/path/ # Here is the change
+
 
