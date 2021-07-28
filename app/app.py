@@ -54,7 +54,7 @@ def set_email():
         <form method="post">
             <label for="email">Enter your email address:</label>
             <input type="email" id="email" name="email_address" required />
-            <button type=--"submit">Submit</button
+            <button type="submit">Submit</button
         </form>
         """
 
