@@ -82,15 +82,5 @@ db.create_all()
 
 
 
-class AddressForm(FlaskForm):
-    fname = StringField("First Name")
-    lname = StringField("Last Name")
-    address = StringField("Address")
-    city = StringField("City")
-    state = StringField("State")
-    zip_code = StringField("Zip Code")
-    submit = SubmitField("Submit")
-
-
 if __name__ == '__main__':
     app.run(host="0.0.0.0")
