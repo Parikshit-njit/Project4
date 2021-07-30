@@ -1,28 +1,13 @@
-from contextlib import redirect_stderr
-from typing import List, Dict
-import mysql.connector
-import simplejson as json
-from flask import Flask, Response, jsonify, session, url_for, render_template_string
+from flask import Flask, session, url_for, render_template_string
 from flask import request, redirect
-from flask import render_template
-from flaskext.mysql import MySQL
-from pymysql.cursors import DictCursor
 from flask_sqlalchemy import SQLAlchemy
-# from models import Addresses
-from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField
-from sqlalchemy.orm import sessionmaker
 from sqlalchemy import create_engine
-from collections import OrderedDict
-from sqlalchemy.ext.serializer import loads, dumps
 import redis
 from flask_session import Session
 from routes import routes_api
 
 engine = create_engine('sqlite:///addresses.db', echo=True)
 
-# Session = sessionmaker(bind=engine)
-# session = Session()
 
 app = Flask(__name__,
     instance_relative_config=False,
@@ -38,11 +23,11 @@ app.config['SESSION_PERMANENT'] = False
 app.config['SESSION_USE_SIGNER'] = True
 app.config['SESSION_REDIS'] = redis.from_url('redis://localhost:6379')
 
-# Create and initialize the Flask-Session object AFTER `app` has been configured
 server_session = Session(app)
 
 db = SQLAlchemy(app)
 app.register_blueprint(routes_api)
+
 
 @app.route('/set_email', methods=['GET', 'POST'])
 def set_email():
@@ -73,13 +58,11 @@ def get_email():
 
 @app.route('/delete_email')
 def delete_email():
-    # Clear the email stored in the session object
     session.pop('email', default=None)
     return '<h1>Session deleted!</h1>'
 
 
 db.create_all()
-
 
 
 if __name__ == '__main__':
