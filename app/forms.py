@@ -1,6 +1,16 @@
 from collections import OrderedDict
-
+from flask_wtf import FlaskForm
+from wtforms import StringField, SubmitField
 from app import db
+
+class AddressForm(FlaskForm):
+    fname = StringField("First Name")
+    lname = StringField("Last Name")
+    address = StringField("Address")
+    city = StringField("City")
+    state = StringField("State")
+    zip_code = StringField("Zip Code")
+    submit = SubmitField("Submit")
 
 class Addresses(db.Model):
     """Data model for user addresses."""
