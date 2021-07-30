@@ -17,6 +17,7 @@ from collections import OrderedDict
 from sqlalchemy.ext.serializer import loads, dumps
 import redis
 from flask_session import Session
+from routes import routes_api
 
 engine = create_engine('sqlite:///addresses.db', echo=True)
 
@@ -41,7 +42,7 @@ app.config['SESSION_REDIS'] = redis.from_url('redis://localhost:6379')
 server_session = Session(app)
 
 db = SQLAlchemy(app)
-
+app.register_blueprint(routes_api)
 
 @app.route('/set_email', methods=['GET', 'POST'])
 def set_email():
@@ -148,27 +149,6 @@ class AddressForm(FlaskForm):
     zip_code = StringField("Zip Code")
     submit = SubmitField("Submit")
 
-@app.before_first_request
-def prefill_db():
-    db.session.query(Addresses).delete()
-    db.session.commit()
-    try:
-        for csv_row in open("../db/addresses.csv", "r"):
-            line = csv_row.strip().split(",")
-            print(line)
-            fname = line[0]
-            lname = line[1]
-            address = line[2]
-            city = line[3]
-            state = line[4]
-            zip_code = line[5]
-            newAddress = Addresses(fname=fname, lname=lname, address=address, city=city, state=state, zip_code=zip_code)
-            db.session.add(newAddress)
-            db.session.commit()
-    except:
-        print("HANG ON!!!")
-    finally:
-        print("In finally...")
 
 
 @app.route('/', methods=['GET'])
