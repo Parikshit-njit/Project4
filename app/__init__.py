@@ -1,5 +1,4 @@
 from flask import Flask
-from app.app import Addresses
 from app.app import db
 
 app = Flask(__name__)
