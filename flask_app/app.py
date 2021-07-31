@@ -1,6 +1,7 @@
 from sqlalchemy import create_engine
 from flask_app import create_app
 
+
 engine = create_engine('sqlite:///addresses.db', echo=True)
 
 
