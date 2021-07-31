@@ -1,5 +1,5 @@
 from collections import OrderedDict
-from app import db
+from flask_app import db
 
 
 class Addresses(db.Model):
