@@ -1,4 +1,4 @@
-from flask import Blueprint, session, url_for, render_template_string, request, redirect
+from flask import Blueprint, session, url_for, render_template_string, request, redirect, render_template
 
 routes_api = Blueprint('routes_api', __name__)
 
@@ -190,13 +190,7 @@ def set_email():
         session['email'] = request.form['email_address']
         return redirect(url_for('routes_api.get_email'))
 
-    return """
-        <form method="post">
-            <label for="email">Enter your email address:</label>
-            <input type="email" id="email" name="email_address" required />
-            <button type="submit">Submit</button
-        </form>
-        """
+    return render_template('redis.html')
 
 
 @routes_api.route('/get_email')
