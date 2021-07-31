@@ -1,12 +1,11 @@
-from flask import Blueprint
-
+from flask import Blueprint, session, url_for, render_template_string, request, redirect
 
 routes_api = Blueprint('routes_api', __name__)
 
 
 @routes_api.before_app_first_request
 def prefill_db():
-    from app import db
+    from flask_app import db
     from models import Addresses
     db.session.query(Addresses).delete()
     db.session.commit()
@@ -58,7 +57,7 @@ def form_edit_get(address_id):
 
 @routes_api.route('/edit/<int:address_id>', methods=['POST'])
 def form_update_post(address_id):
-    from app import db
+    from flask_app import db
     from models import Addresses
     from flask import request, redirect
     obj = Addresses.query.filter_by(id=address_id).one()
@@ -79,7 +78,7 @@ def form_update_post(address_id):
 def form_insert_get():
         from models import Addresses
         from forms import AddressForm
-        from app import db
+        from flask_app import db
         from flask import render_template
         form = AddressForm()
         addressNew = Addresses(fname=form.fname.data, lname=form.lname.data, address=form.address.data,
@@ -111,7 +110,7 @@ def form_insert_post():
 @routes_api.route('/delete/<int:address_id>', methods=['POST'])
 def form_delete_post(address_id):
     from models import Addresses
-    from app import db
+    from flask_app import db
     from flask import redirect
     obj = Addresses.query.filter_by(id=address_id).one()
     db.session.delete(obj)
@@ -140,7 +139,7 @@ def api_retrieve(address_id) -> str:
 
 @routes_api.route('/api/v1/addresses/<int:address_id>', methods=['PUT'])
 def api_edit(address_id) -> str:
-    from app import db
+    from flask_app import db
     from models import Addresses
     from flask import request, Response
     content = request.json
@@ -159,7 +158,7 @@ def api_edit(address_id) -> str:
 @routes_api.route('/api/v1/addresses', methods=['POST'])
 def api_add() -> str:
     from models import Addresses
-    from app import db
+    from flask_app import db
     from flask import request, Response
     content = request.json
 
@@ -175,10 +174,43 @@ def api_add() -> str:
 @routes_api.route('/api/v1/addresses/<int:address_id>', methods=['DELETE'])
 def api_delete(address_id) -> str:
     from models import Addresses
-    from app import db
+    from flask_app import db
     from flask import Response
     obj = Addresses.query.filter_by(id=address_id).one()
     db.session.delete(obj)
     db.session.commit();
     resp = Response(status=200, mimetype='application/json')
     return resp
+
+
+@routes_api.route('/set_email', methods=['GET', 'POST'])
+def set_email():
+    if request.method == 'POST':
+        # Save the form data to the session object
+        session['email'] = request.form['email_address']
+        return redirect(url_for('routes_api.get_email'))
+
+    return """
+        <form method="post">
+            <label for="email">Enter your email address:</label>
+            <input type="email" id="email" name="email_address" required />
+            <button type="submit">Submit</button
+        </form>
+        """
+
+
+@routes_api.route('/get_email')
+def get_email():
+    return render_template_string("""
+            {% if session['email'] %}
+                <h1>Welcome {{ session['email'] }}!</h1>
+            {% else %}
+                <h1>Welcome! Please enter your email <a href="{{ url_for('set_email') }}">here.</a></h1>
+            {% endif %}
+        """)
+
+
+@routes_api.route('/delete_email')
+def delete_email():
+    session.pop('email', default=None)
+    return '<h1>Session deleted!</h1>'
