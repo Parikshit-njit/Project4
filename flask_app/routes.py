@@ -55,7 +55,7 @@ def record_view(address_id):
     from models import Addresses
     from flask import render_template
     print(Addresses.query.get(address_id).fname)
-    return render_template('view.html', title='View Form', city=Addresses.query.get(address_id))
+    return render_template('view.html', title='View Form', city=Addresses.query.get(address_id), session = session)
 
 
 @routes_api.route('/edit/<int:address_id>', methods=['GET'])
@@ -354,4 +354,41 @@ body {
 @routes_api.route('/delete_email')
 def delete_email():
     session.pop('email', default=None)
-    return '<h1>Session deleted!</h1>'
+    return render_template_string("""
+        <html>
+            <head>
+                <style>
+                .headings {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  padding: 2em 0;
+}
+
+.title {
+  margin: 0;
+}
+
+.hr {
+  display: block;
+  flex: 1;
+  margin: 0 30px;
+  height: 3px;
+  background: #D4D4D4;
+}
+</style>
+            </head>
+            <body>
+                <section>
+  <div class="container">
+    <div class="headings">
+      <h2 class="title">Session Deleted !!!</h2>
+      <span class="hr"></span>
+      <a href="{{ url_for('routes_api.get_email') }}" class="btn btn-primary btn-lg">Sign In</a>
+    </div>
+  </div>
+</section>
+            </body>
+        </html>
+    """)
+

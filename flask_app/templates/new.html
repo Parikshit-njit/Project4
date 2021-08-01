@@ -38,13 +38,15 @@
 
 </form>
 <br>
-    {% for temp in all_addresses %}
-        {{ temp.id }}
-        {{ temp.fname }}
-        {{ temp.lname }}
-        {{ temp.address }}
-        {{ temp.city }}
-        {{ temp.state }}
-        {{ temp.zip_code }}<br>
-    {% endfor %}
+{#    <ul class="list-group list-group-flush">#}
+{#    {% for temp in all_addresses %}#}
+{#        <li class="list-group-item">{{ temp.id }} &nbsp;#}
+{#        {{ temp.fname }} &nbsp;#}
+{#        {{ temp.lname }} &nbsp;#}
+{#        {{ temp.address }} &nbsp;#}
+{#        {{ temp.city }} &nbsp;#}
+{#        {{ temp.state }} &nbsp; {{ temp.zip_code }}</li><br>#}
+{#    {% endfor %}#}
+{#    </ul>#}
+
 {% endblock %}
