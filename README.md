@@ -15,7 +15,7 @@ https://user-images.githubusercontent.com/81203429/127777029-7a647388-5063-4043-
   
   <li><h3>Delete Existing Record Video</h3>
     
-  https://user-images.githubusercontent.com/81203429/127776752-2400b791-adb3-482d-a5ab-8f3392d50b8d.mov
+https://user-images.githubusercontent.com/81203429/127778771-22b2f248-b514-4d5c-946d-a249739495e5.mov
   
   </li>
   
