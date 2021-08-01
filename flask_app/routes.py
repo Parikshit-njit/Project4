@@ -303,6 +303,16 @@ body {
 		<li>M</li>
 		<li>E</li>
 		<li>{{ session['email'] }}</li>
+		<li style="font-size: 30px">
+	<a href="{{ url_for('routes_api.index') }}"> View Addresses </a>
+	</li> <br>
+	<li style="font-size: 30px">
+	<a href="{{ url_for('routes_api.api_browse') }}"> View Addresses in Json Format </a>
+	</li> <br>
+		<li style="font-size: 30px">
+	<a href="{{ url_for('routes_api.form_insert_post') }}"> New Address </a>
+	</li> <br>
+	
 	</ul>
 	<script>
 	$(function() {
