@@ -1,7 +1,7 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 import redis
-from routes import routes_api
+from flask_app.routes import routes_api
 
 
 
