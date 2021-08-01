@@ -1,3 +1,5 @@
+from functools import wraps
+
 from flask import Blueprint, session, url_for, render_template_string, request, redirect, render_template
 
 routes_api = Blueprint('routes_api', __name__)
@@ -28,7 +30,17 @@ def prefill_db():
         print("In finally...")
 
 
+def login_required(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        if session.get('email') is None:
+            return redirect(url_for('routes_api.get_email'))
+        return f(*args, **kwargs)
+    return decorated_function
+
+
 @routes_api.route('/', methods=['GET'])
+@login_required
 def index():
     from models import Addresses
     from flask import render_template
@@ -38,6 +50,7 @@ def index():
 
 
 @routes_api.route('/view/<int:address_id>', methods=['GET'])
+@login_required
 def record_view(address_id):
     from models import Addresses
     from flask import render_template
@@ -46,6 +59,7 @@ def record_view(address_id):
 
 
 @routes_api.route('/edit/<int:address_id>', methods=['GET'])
+@login_required
 def form_edit_get(address_id):
     from models import Addresses
     from flask import render_template
@@ -56,6 +70,7 @@ def form_edit_get(address_id):
 
 
 @routes_api.route('/edit/<int:address_id>', methods=['POST'])
+@login_required
 def form_update_post(address_id):
     from flask_app import db
     from models import Addresses
@@ -75,6 +90,7 @@ def form_update_post(address_id):
 
 
 @routes_api.route('/address/new', methods=['POST'])
+@login_required
 def form_insert_get():
         from models import Addresses
         from forms import AddressForm
@@ -97,6 +113,7 @@ def form_insert_get():
 
 
 @routes_api.route('/address/new', methods=['GET'])
+@login_required
 def form_insert_post():
     from flask import render_template
     from forms import AddressForm
@@ -108,6 +125,7 @@ def form_insert_post():
 
 
 @routes_api.route('/delete/<int:address_id>', methods=['POST'])
+@login_required
 def form_delete_post(address_id):
     from models import Addresses
     from flask_app import db
