@@ -188,6 +188,7 @@ def set_email():
     if request.method == 'POST':
         # Save the form data to the session object
         session['email'] = request.form['email_address']
+        session['redis_test'] = "session_test_variable"
         return redirect(url_for('routes_api.get_email'))
 
     return render_template('redis.html')
@@ -302,7 +303,8 @@ body {
 		<li>O</li>
 		<li>M</li>
 		<li>E</li>
-		<li>{{ session['email'] }}</li>
+		<li>{{ session['email'] }}</li><br>
+		<li style="font-size: 20px">Here's is your session variable: <b>{{ session['redis_test'] }}</b> </li><br><br><br>
 		<li style="font-size: 30px">
 	<a href="{{ url_for('routes_api.index') }}"> View Addresses </a>
 	</li> <br>
@@ -312,7 +314,9 @@ body {
 		<li style="font-size: 30px">
 	<a href="{{ url_for('routes_api.form_insert_post') }}"> New Address </a>
 	</li> <br>
-	
+	<li style="font-size: 30px">
+	<a href="{{ url_for('routes_api.delete_email') }}"> Delete Session </a>
+	</li> <br>
 	</ul>
 	<script>
 	$(function() {
