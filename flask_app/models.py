@@ -59,3 +59,5 @@ class Addresses(db.Model):
 
     def __repr__(self):
         return '<Addresses {}>'.format(self.id)
+
+db.create_all()
