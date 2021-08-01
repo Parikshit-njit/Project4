@@ -8,11 +8,11 @@ routes_api = Blueprint('routes_api', __name__)
 @routes_api.before_app_first_request
 def prefill_db():
     from flask_app import db
-    from models import Addresses
+    from flask_app.models import Addresses
     db.session.query(Addresses).delete()
     db.session.commit()
     try:
-        for csv_row in open("../db/addresses.csv", "r"):
+        for csv_row in open("flask_app/db/addresses.csv", "r"):
             line = csv_row.strip().split(",")
             print(line)
             fname = line[0]
@@ -42,7 +42,7 @@ def login_required(f):
 @routes_api.route('/', methods=['GET'])
 @login_required
 def index():
-    from models import Addresses
+    from flask_app.models import Addresses
     from flask import render_template
     user = {'username': 'Address Project'}
     all_addresses = Addresses.query.order_by(Addresses.id)
@@ -52,7 +52,7 @@ def index():
 @routes_api.route('/view/<int:address_id>', methods=['GET'])
 @login_required
 def record_view(address_id):
-    from models import Addresses
+    from flask_app.models import Addresses
     from flask import render_template
     print(Addresses.query.get(address_id).fname)
     return render_template('view.html', title='View Form', city=Addresses.query.get(address_id), session = session)
@@ -61,7 +61,7 @@ def record_view(address_id):
 @routes_api.route('/edit/<int:address_id>', methods=['GET'])
 @login_required
 def form_edit_get(address_id):
-    from models import Addresses
+    from flask_app.models import Addresses
     from flask import render_template
     obj = Addresses.query.filter_by(id=address_id).one()
     return render_template('edit.html', title='Edit Form', address=obj)
@@ -73,7 +73,7 @@ def form_edit_get(address_id):
 @login_required
 def form_update_post(address_id):
     from flask_app import db
-    from models import Addresses
+    from flask_app.models import Addresses
     from flask import request, redirect
     obj = Addresses.query.filter_by(id=address_id).one()
     obj.fname = request.form.get('fname')
@@ -92,8 +92,8 @@ def form_update_post(address_id):
 @routes_api.route('/address/new', methods=['POST'])
 @login_required
 def form_insert_get():
-        from models import Addresses
-        from forms import AddressForm
+        from flask_app.models import Addresses
+        from flask_app.forms import AddressForm
         from flask_app import db
         from flask import render_template
         form = AddressForm()
@@ -116,8 +116,8 @@ def form_insert_get():
 @login_required
 def form_insert_post():
     from flask import render_template
-    from forms import AddressForm
-    from models import Addresses
+    from flask_app.forms import AddressForm
+    from flask_app.models import Addresses
     form = AddressForm()
     all_addresses = Addresses.query.order_by(Addresses.id)
     return render_template('new.html', title='New Address Form', form=form, all_addresses=all_addresses)
@@ -127,7 +127,7 @@ def form_insert_post():
 @routes_api.route('/delete/<int:address_id>', methods=['POST'])
 @login_required
 def form_delete_post(address_id):
-    from models import Addresses
+    from flask_app.models import Addresses
     from flask_app import db
     from flask import redirect
     obj = Addresses.query.filter_by(id=address_id).one()
@@ -138,7 +138,7 @@ def form_delete_post(address_id):
 
 @routes_api.route('/api/v1/addresses', methods=['GET'])
 def api_browse() -> str:
-    from models import Addresses
+    from flask_app.models import Addresses
     from flask import jsonify
     resp = Addresses.query.all()
     json_arr = []
@@ -149,7 +149,7 @@ def api_browse() -> str:
 
 @routes_api.route('/api/v1/addresses/<int:address_id>', methods=['GET'])
 def api_retrieve(address_id) -> str:
-    from models import Addresses
+    from flask_app.models import Addresses
     from flask import jsonify
     resp = Addresses.query.filter_by(id=address_id).one()
     return jsonify(resp.toDict())
@@ -158,7 +158,7 @@ def api_retrieve(address_id) -> str:
 @routes_api.route('/api/v1/addresses/<int:address_id>', methods=['PUT'])
 def api_edit(address_id) -> str:
     from flask_app import db
-    from models import Addresses
+    from flask_app.models import Addresses
     from flask import request, Response
     content = request.json
     obj = Addresses.query.filter_by(id=address_id).one()
@@ -175,7 +175,7 @@ def api_edit(address_id) -> str:
 
 @routes_api.route('/api/v1/addresses', methods=['POST'])
 def api_add() -> str:
-    from models import Addresses
+    from flask_app.models import Addresses
     from flask_app import db
     from flask import request, Response
     content = request.json
@@ -191,7 +191,7 @@ def api_add() -> str:
 
 @routes_api.route('/api/v1/addresses/<int:address_id>', methods=['DELETE'])
 def api_delete(address_id) -> str:
-    from models import Addresses
+    from flask_app.models import Addresses
     from flask_app import db
     from flask import Response
     obj = Addresses.query.filter_by(id=address_id).one()
