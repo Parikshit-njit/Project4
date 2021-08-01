@@ -27,8 +27,8 @@ https://user-images.githubusercontent.com/81203429/127778905-e24b9a30-16e2-4351-
   
    <li><h3>Sign-Out</h3>
     
-  https://user-images.githubusercontent.com/81203429/127776752-2400b791-adb3-482d-a5ab-8f3392d50b8d.mov
-  
+https://user-images.githubusercontent.com/81203429/127779010-eddcbe36-5382-478f-8810-01290d384ce4.mov
+     
   </li>
   
   <li><h3>Session-In-Cookies</h3>
