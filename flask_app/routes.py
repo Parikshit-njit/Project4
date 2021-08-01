@@ -55,7 +55,7 @@ def record_view(address_id):
     from models import Addresses
     from flask import render_template
     print(Addresses.query.get(address_id).fname)
-    return render_template('view.html', title='View Form', city=Addresses.query.get(address_id))
+    return render_template('view.html', title='View Form', city=Addresses.query.get(address_id), session = session)
 
 
 @routes_api.route('/edit/<int:address_id>', methods=['GET'])
