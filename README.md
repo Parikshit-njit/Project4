@@ -28,7 +28,7 @@ This project is part of Final Assessment IS601 that encapsulates Python, Flask, 
 </div>
 
 ## Screenshots
-<h3> Docker Login </h3>
+<h3> Docker Running </h3>
 
 <img src="screenshots/Docker running.png"></img>
 
