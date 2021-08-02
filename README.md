@@ -34,6 +34,12 @@ This project is part of Final Assessment IS601 that encapsulates Python, Flask, 
 
 <br>
 
+<h3> Sign-up:Sign-In </h3>
+
+<img src="screenshots/Sign-Up:Sign-In.png"></img>
+
+<br>
+
 
 <h3> Postman Listing All Records </h3>
 
