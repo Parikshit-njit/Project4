@@ -60,4 +60,30 @@ class Addresses(db.Model):
     def __repr__(self):
         return '<Addresses {}>'.format(self.id)
 
+
+class Users(db.Model):
+    """Data model for user addresses."""
+    __tablename__ = 'users'
+    id = db.Column(
+        db.Integer,
+        primary_key=True
+    )
+
+    email = db.Column(
+        db.String(64),
+        index=False,
+        unique=False,
+        nullable=True
+    )
+
+    password = db.Column(
+        db.String(80),
+        index=False,
+        unique=False,
+        nullable=True
+    )
+
+    def __repr__(self):
+        return '<Users {}>'.format(self.id)
+
 db.create_all()

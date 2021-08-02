@@ -273,12 +273,28 @@ Resources
 </style>
 </head>
 <body>
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul class=flashes>
+    {% for message in messages %}
+      <li id="successMessage"><h1>{{ message }}</h1></li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+{% block body %}{% endblock %}
 <div class="container">
   <section id="content">
-    <form action="" method="POST">
-      <h1>Login Form</h1>
+    <form action="/signup" method="POST">
+      <h1>Sign Up Form</h1>
+        <div>
+         <input type="email" placeholder="Email" name="email_address" required="" id="email" />
+       </div>
+        <div>
+         <input type="password" placeholder="Password" name="password" required="" id="password" />
+       </div>
       <div>
-        <input type="email" placeholder="Email" name="email_address" required="" id="email" />
+        <input type="password" placeholder="Retype Password" name="confirm-password" required="" id="confirm-password" />
       </div>
       <div>
         <input type="submit" value="Submit" />
@@ -287,5 +303,24 @@ Resources
 
   </section><!-- content -->
 </div><!-- container -->
+<div class="container">
+  <section id="content">
+    <form action="/signin" method="POST">
+      <h1>Login Form</h1>
+      <div>
+        <input type="email" placeholder="Email" name="email_address" required="" id="email" />
+      </div>
+        <div>
+        <input type="password" placeholder="Password" name="password" required="" id="password" />
+      </div>
+      <div>
+        <input type="submit" value="Submit" />
+      </div>
+    </form><!-- form -->
+
+  </section><!-- content -->
+</div><!-- container -->
+<script type="text/javascript">window.setTimeout("document.getElementById('successMessage').style.display='none';", 2000); </script>
+
 </body>
 </html>

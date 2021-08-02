@@ -12,7 +12,7 @@ def prefill_db():
     db.session.query(Addresses).delete()
     db.session.commit()
     try:
-        for csv_row in open("db/addresses.csv", "r"):
+        for csv_row in open("flask_app/db/addresses.csv", "r"):
             line = csv_row.strip().split(",")
             print(line)
             fname = line[0]
@@ -200,15 +200,40 @@ def api_delete(address_id) -> str:
     resp = Response(status=200, mimetype='application/json')
     return resp
 
+@routes_api.route('/signup', methods=['POST'])
+def user_signup():
+    from flask_app.models import Users
+    from flask import flash
+    from flask_app import db
+    if request.form['password'] == request.form['confirm-password']:
+        user = Users(email = request.form['email_address'], password = request.form['password'])
+        print("User Added !", user.email)
+        flash("User successfully added!")
+        db.session.add(user)
+        db.session.commit()
+    else:
+        flash("Passwords don't match!")
+    return redirect(request.referrer)
 
-@routes_api.route('/set_email', methods=['GET', 'POST'])
-def set_email():
-    if request.method == 'POST':
-        # Save the form data to the session object
+@routes_api.route('/signin', methods=['POST'])
+def user_signin():
+    from flask_app.models import Users
+    from flask import flash
+    from flask_app import db
+    input = request.form['email_address']
+    user_count = Users.query.filter_by(email = request.form['email_address']).count()
+    if user_count==0:
+        flash("User not in Database!")
+        return redirect(request.referrer)
+    else:
+        print("User in the database")
         session['email'] = request.form['email_address']
         session['redis_test'] = "session_test_variable"
         return redirect(url_for('routes_api.get_email'))
 
+
+@routes_api.route('/set_email', methods=['GET', 'POST'])
+def set_email():
     return render_template('redis.html')
 
 
@@ -346,7 +371,7 @@ body {
 </body>
 </html>
             {% else %}
-                <h1>Welcome! Please enter your email <a href="{{ url_for('routes_api.set_email') }}">here.</a></h1>
+                <h1>Welcome! Please enter your Credentials <a href="{{ url_for('routes_api.set_email') }}">here.</a></h1>
             {% endif %}
         """)
 

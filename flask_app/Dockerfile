@@ -9,4 +9,4 @@ RUN pip install -r requirements.txt
 
 COPY . /flask_app
 
-CMD python -m  app
+CMD python3 -m  app
