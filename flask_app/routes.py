@@ -12,7 +12,7 @@ def prefill_db():
     db.session.query(Addresses).delete()
     db.session.commit()
     try:
-        for csv_row in open("flask_app/db/addresses.csv", "r"):
+        for csv_row in open("db/addresses.csv", "r"):
             line = csv_row.strip().split(",")
             print(line)
             fname = line[0]

@@ -3,3 +3,5 @@ simplejson
 mysql-connector
 flask_wtf
 Flask-Less
+repackage
+redis

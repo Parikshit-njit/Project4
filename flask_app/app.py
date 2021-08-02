@@ -1,4 +1,6 @@
 from sqlalchemy import create_engine
+import repackage
+repackage.up()
 from flask_app import create_app
 
 
