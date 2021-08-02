@@ -4,8 +4,7 @@
 This project is part of Final Assessment IS601 that encapsulates Python, Flask, SQLAlchemy, Redis Session Management, Docker and Shell scripting. 
 
 # Working Project Video
-[![Watch the video](https://img.youtube.com/vi/T-D1KVIuvjA/maxresdefault.jpg)](https://drive.google.com/file/d/1o-FDVQjlm_WarR_1Ofbp4dkOaN2kBO7x/view?usp=sharing)
-
+<a href="https://drive.google.com/file/d/1o-FDVQjlm_WarR_1Ofbp4dkOaN2kBO7x/view?usp=sharing">Project Working Video Link</a>
 
 ## How to run ?
 <div>
