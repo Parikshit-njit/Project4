@@ -61,7 +61,7 @@ This project is part of Final Assessment IS601 that encapsulates Python, Flask, 
 <h3>HTML Showing Creation of Record</h3>
 <h4>Response Screenshot</h4>
 
-<img src="screenshots/Create Record Page Preview.png"></img>
+<img src="screenshots/HTML Create One Record.png"></img>
                                                    
 <hr>
 
