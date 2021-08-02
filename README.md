@@ -77,6 +77,7 @@ https://user-images.githubusercontent.com/81203429/127779208-e3e1b353-5bb5-4a60-
   <li><h3>View Session Information in UI</h3>
       <div>This video shows delete of an existing record in the database. It uses the <i>POST</i> endpoint /delete/<int:address_id>.</div><br>
 
+https://user-images.githubusercontent.com/81203429/127894120-62f1b9f3-cc3b-4ccf-b627-4de832b553df.mov
      
   </li><br>
   
