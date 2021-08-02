@@ -21,6 +21,9 @@ This project is part of Final Assessment IS601 that encapsulates Python, Flask, 
   </ol>
 </div>
 
+## Screenshots
+### Postman Screenshots
+
 ## Videos
 <ul>
   <li><h3>Add Record Video</h3>
