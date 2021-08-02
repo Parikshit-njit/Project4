@@ -1,6 +1,16 @@
-# Project4 Description
+# Project4 
 
-# Videos
+## Description
+This project is part of Final Assessment IS601 that encapsulates Python, Flask, SQLAlchemy, Redis Session Management, Docker and Shell scripting. 
+
+## How to run ?
+<ul>
+<li>Clone this repository</li>
+<li>Run command in the terminal: <code>sh mac.sh</code></li>
+</ul>
+
+
+## Videos
 <ul>
   <li><h3>Add Record Video</h3>
     
