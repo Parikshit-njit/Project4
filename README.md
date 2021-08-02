@@ -39,8 +39,6 @@ This project is part of Final Assessment IS601 that encapsulates Python, Flask, 
 <h3>Postman Showing One Record with a Get Request</h3>
 <img src="screenshots/JSON One Record Postman.png"></img>
 
-<img src="screenshots/Page One Record Postman.png"></img>
-
 <hr>
 
 <h3>HTML Page Showing One Record with a Get Request</h3>
