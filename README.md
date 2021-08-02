@@ -57,15 +57,15 @@ https://user-images.githubusercontent.com/81203429/127779010-eddcbe36-5382-478f-
      
   </li><br>
   
-  <li><h3>Session-In-Cookies</h3>
-     <div>This video shows delete of an existing record in the database. It uses the <i>POST</i> endpoint /delete/<int:address_id>.</div><br>
+  <li><h3>Session-Cookies</h3>
+     <div>This video shows the session cookies that gets stored in developer tools upon sign-in.</div><br>
 
   https://user-images.githubusercontent.com/81203429/127776752-2400b791-adb3-482d-a5ab-8f3392d50b8d.mov
   
   </li><br>
   
    <li><h3>Delete Session</h3>
-     <div>This video shows delete of an existing record in the database. It uses the <i>POST</i> endpoint /delete/<int:address_id>.</div><br>
+     <div>This video shows ways of deleting session cookie. The user can either delete the session cookie either by signing-out or by deleting the cookie from developer tools.</div><br>
 
      
 https://user-images.githubusercontent.com/81203429/127779208-e3e1b353-5bb5-4a60-9c22-7c1a6672bbf8.mov
