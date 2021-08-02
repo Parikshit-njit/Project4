@@ -81,8 +81,10 @@ https://user-images.githubusercontent.com/81203429/127779208-e3e1b353-5bb5-4a60-
   </li><br>
   
    <li><h3>View Session Cookie in Developer Tools</h3>
-     <div>This video shows the session cookies that gets stored in developer tools upon sign-in.</div><br>
-
+     <div>This video shows the session cookies that gets stored in developer tools upon sign-in.</div>
+     
+ https://user-images.githubusercontent.com/81203429/127887003-958747b5-f64c-44e0-927b-fbebc54d2dd1.mov
+     
      
   </li><br>
   
