@@ -43,7 +43,7 @@ This project is part of Final Assessment IS601 that encapsulates Python, Flask, 
 
 <h3>HTML Page Showing One Record with a Get Request</h3>
 
-<img src="screenshots/Page One Record Preview.png"></img>
+<img src="screenshots/HTML One Record.png"></img>
 
 <hr>
 
