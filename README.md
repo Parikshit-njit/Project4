@@ -80,7 +80,7 @@ This project is part of Final Assessment IS601 that encapsulates Python, Flask, 
 <hr>
 <h3> HTML Showing Edit of Record </h3>
 
-<img src="screenshots/Edit Record Page Preview.png"></img>
+<img src="screenshots/HTML Edit Record Page.png"></img>
 
 <br>
 <hr>
