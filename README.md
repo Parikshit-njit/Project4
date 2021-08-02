@@ -51,7 +51,7 @@ https://user-images.githubusercontent.com/81203429/127778905-e24b9a30-16e2-4351-
   </li><br>
   
    <li><h3>Sign-Out</h3>
-    <div>This video shows sign-out using delete of session. It makes use of removal of session cookie stored in the browser.</div><br>
+    <div>This video shows sign-out using delete of session. It makes use of removal of session cookie stored in the browser. Once the session is deleted, the user cannot navigate to any end point without signing-in again.</div><br>
 
 https://user-images.githubusercontent.com/81203429/127779010-eddcbe36-5382-478f-8810-01290d384ce4.mov
      
