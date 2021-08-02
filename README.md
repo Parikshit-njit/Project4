@@ -53,6 +53,16 @@ https://user-images.githubusercontent.com/81203429/127779208-e3e1b353-5bb5-4a60-
      
   </li>
   
+  <li><h3>View Session Information in UI</h3>
+    
+     
+  </li>
+  
+   <li><h3>View Session Cookie in Developer Tools</h3>
+    
+     
+  </li>
+  
 </ul>
   
   
