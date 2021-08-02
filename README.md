@@ -15,7 +15,10 @@ This project is part of Final Assessment IS601 that encapsulates Python, Flask, 
     <li><h3>Using Docker</h3>
 <ul>
 <li>Clone this repository</li>
-<li></li>
+<li>Open using Pycharm</li>
+  <li>Add Configuration using 'Edit Configuration'</li>
+  <li>Set File Path to Docker-compose file</li>
+  <li>Run the Project</li>
 </ul>
     </li>
   </ol>
@@ -175,20 +178,7 @@ https://user-images.githubusercontent.com/81203429/127894120-62f1b9f3-cc3b-4ccf-
   
 </ul>
   
-## Branch Information & References
-<ol>
-  <li> </li>
-  <li> </li>
-  <li> </li>
-  <li> </li>
-  <li> </li>
-  <li> </li>
-  <li> </li>
-  <li> </li>
-  <li> </li>
-  <li> </li>
-  <li> </li>
-</ol>  
+
   
   
 
