@@ -34,7 +34,7 @@ This project is part of Final Assessment IS601 that encapsulates Python, Flask, 
 <hr>
 
 <h3>HTML Page Listing All Records</h3>
-<img src="screenshots/Home Page Preview.png"></img>
+<img src="screenshots/HTML Listing All Pages.png"></img>
 
 <hr>
 
