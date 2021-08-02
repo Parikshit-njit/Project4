@@ -9,6 +9,8 @@ routes_api = Blueprint('routes_api', __name__)
 def prefill_db():
     from flask_app import db
     from flask_app.models import Addresses
+    from flask_app.models import Users
+    db.session.query(Users).delete()
     db.session.query(Addresses).delete()
     db.session.commit()
     try:
@@ -226,10 +228,15 @@ def user_signin():
         flash("User not in Database!")
         return redirect(request.referrer)
     else:
-        print("User in the database")
-        session['email'] = request.form['email_address']
-        session['redis_test'] = "session_test_variable"
-        return redirect(url_for('routes_api.get_email'))
+        user = Users.query.filter_by(email=request.form['email_address']).first()
+        if user.email == request.form['email_address']:
+            print("User in the database")
+            session['email'] = request.form['email_address']
+            session['redis_test'] = "session_test_variable"
+            return redirect(url_for('routes_api.get_email'))
+        else:
+            flash("Credentials don't match!")
+            return redirect(request.referrer)
 
 
 @routes_api.route('/set_email', methods=['GET', 'POST'])
