@@ -58,8 +58,16 @@ https://user-images.githubusercontent.com/81203429/127779010-eddcbe36-5382-478f-
   </li><br>
   
   
-   <li><h3>Delete Session</h3>
-     <div>This video shows ways of deleting session cookie. The user can either delete the session cookie either by signing-out or by deleting the cookie from developer tools.</div><br>
+   <li><h3>Delete Session using UI</h3>
+     <div>This video shows deletion of session cookie using UI.</div><br>
+
+     
+https://user-images.githubusercontent.com/81203429/127779208-e3e1b353-5bb5-4a60-9c22-7c1a6672bbf8.mov
+     
+  </li><br>
+  
+  <li><h3>Delete Session using Developer Tools</h3>
+     <div>This video shows deletion of session cookie using developer tools.</div><br>
 
      
 https://user-images.githubusercontent.com/81203429/127779208-e3e1b353-5bb5-4a60-9c22-7c1a6672bbf8.mov
