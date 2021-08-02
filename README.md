@@ -29,8 +29,6 @@ This project is part of Final Assessment IS601 that encapsulates Python, Flask, 
 
 <br>
 
-<img src="screenshots/Home Page Postman.png"></img>
-
 <hr>
 
 <h3>HTML Page Listing All Records</h3>
