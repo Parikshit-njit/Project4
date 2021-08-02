@@ -37,42 +37,50 @@ https://user-images.githubusercontent.com/81203429/127777029-7a647388-5063-4043-
   </li><br>
   
   <li><h3>Delete Existing Record Video</h3>
+    <div>This video shows delete of an existing record in the database. It uses the <i>POST</i> endpoint /delete/<int:address_id>.</div><br>
     
 https://user-images.githubusercontent.com/81203429/127778771-22b2f248-b514-4d5c-946d-a249739495e5.mov
   
   </li><br>
   
    <li><h3>Sign-In</h3>
+    <div>This video shows delete of an existing record in the database. It uses the <i>POST</i> endpoint /delete/<int:address_id>.</div><br>
     
 https://user-images.githubusercontent.com/81203429/127778905-e24b9a30-16e2-4351-b29f-b3ddbc8247f6.mov
      
   </li><br>
   
    <li><h3>Sign-Out</h3>
-    
+    <div>This video shows delete of an existing record in the database. It uses the <i>POST</i> endpoint /delete/<int:address_id>.</div><br>
+
 https://user-images.githubusercontent.com/81203429/127779010-eddcbe36-5382-478f-8810-01290d384ce4.mov
      
   </li><br>
   
   <li><h3>Session-In-Cookies</h3>
-    
+     <div>This video shows delete of an existing record in the database. It uses the <i>POST</i> endpoint /delete/<int:address_id>.</div><br>
+
   https://user-images.githubusercontent.com/81203429/127776752-2400b791-adb3-482d-a5ab-8f3392d50b8d.mov
   
   </li><br>
   
    <li><h3>Delete Session</h3>
-    
+     <div>This video shows delete of an existing record in the database. It uses the <i>POST</i> endpoint /delete/<int:address_id>.</div><br>
+
+     
 https://user-images.githubusercontent.com/81203429/127779208-e3e1b353-5bb5-4a60-9c22-7c1a6672bbf8.mov
      
   </li><br>
   
   <li><h3>View Session Information in UI</h3>
-    
+      <div>This video shows delete of an existing record in the database. It uses the <i>POST</i> endpoint /delete/<int:address_id>.</div><br>
+
      
   </li><br>
   
    <li><h3>View Session Cookie in Developer Tools</h3>
-    
+        <div>This video shows delete of an existing record in the database. It uses the <i>POST</i> endpoint /delete/<int:address_id>.</div><br>
+
      
   </li><br>
   
