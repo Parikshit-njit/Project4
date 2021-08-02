@@ -44,14 +44,14 @@ https://user-images.githubusercontent.com/81203429/127778771-22b2f248-b514-4d5c-
   </li><br>
   
    <li><h3>Sign-In</h3>
-    <div>This video shows delete of an existing record in the database. It uses the <i>POST</i> endpoint /delete/<int:address_id>.</div><br>
+    <div>This video shows sign-in using email in login form. It makes use of session cookie that gets stored in the browser.</div><br>
     
 https://user-images.githubusercontent.com/81203429/127778905-e24b9a30-16e2-4351-b29f-b3ddbc8247f6.mov
      
   </li><br>
   
    <li><h3>Sign-Out</h3>
-    <div>This video shows delete of an existing record in the database. It uses the <i>POST</i> endpoint /delete/<int:address_id>.</div><br>
+    <div>This video shows sign-out using delete of session. It makes use of removal of session cookie stored in the browser.</div><br>
 
 https://user-images.githubusercontent.com/81203429/127779010-eddcbe36-5382-478f-8810-01290d384ce4.mov
      
