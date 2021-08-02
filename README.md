@@ -101,7 +101,7 @@ This project is part of Final Assessment IS601 that encapsulates Python, Flask, 
 <hr>
 <h3> HTML Showing Delete of Record </h3>
 
-<img src="screenshots/Delete Record Page Preview.png"></img>
+<img src="screenshots/HTML Listing All Pages.png"></img>
 
 <br>
 
