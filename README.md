@@ -17,7 +17,7 @@ This project is part of Final Assessment IS601 that encapsulates Python, Flask, 
     </li>
     <li><h3>Using Docker</h3>
 <ul>
-  <i><b>Docker file is in flask_app folder</b></i>
+  <i><b>Note: Docker file is in flask_app folder</b></i>
 <li>Clone this repository</li>
 <li>Open using Pycharm</li>
   <li>Add Docker Configuration using 'Edit Configuration'</li>
