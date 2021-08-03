@@ -149,7 +149,7 @@ https://user-images.githubusercontent.com/81203429/127778771-22b2f248-b514-4d5c-
    <li><h3>Sign-In</h3>
     <div>This video shows sign-in using email in login form. It makes use of session cookie that gets stored in the browser.</div><br>
     
-     https://user-images.githubusercontent.com/81203429/127939677-7cdacdd5-704f-4d39-9358-bc0a5f083e86.mov
+https://user-images.githubusercontent.com/81203429/127939677-7cdacdd5-704f-4d39-9358-bc0a5f083e86.mov
      
   </li><br>
   
