@@ -40,6 +40,12 @@ This project is part of Final Assessment IS601 that encapsulates Python, Flask, 
 
 <br>
 
+<h3> Session Cookie in Developer Tools </h3>
+
+<img src="screenshots/session cookie.png"></img>
+
+<br>
+
 
 <h3> Postman Listing All Records </h3>
 
