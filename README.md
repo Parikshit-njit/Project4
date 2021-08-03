@@ -160,6 +160,14 @@ https://user-images.githubusercontent.com/81203429/127779010-eddcbe36-5382-478f-
      
   </li><br>
   
+   <li><h3>View Session Info in UI and Session Cookie in Developer Tools</h3>
+     <div>This video shows the session test variable in UI and session cookies that gets stored in developer tools upon sign-in.</div>
+     
+ https://user-images.githubusercontent.com/81203429/127939899-ed92c1ef-3b80-43cd-9466-f5d5ad12b263.mov
+     
+     
+  </li><br>
+  
  
   
 </ul>
