@@ -251,7 +251,7 @@ def get_email():
                 <html>
                 <body>
 <head>
-	<title>Learning Javascript</title>
+	<title>Project 4</title>
 	<link rel="stylesheet" type="text/css" href="style.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script type="text/javascript" src="script.js"></script>
